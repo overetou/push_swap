@@ -1,6 +1,6 @@
 #include <unistd.h>
-#include "../libft/libft.h"
 #include <stdlib.h>
+#include "checker.h"
 
 int		is_sorted(int *a, int argc)
 {
@@ -35,26 +35,36 @@ int		only_int(char **argv, int argc)
 	return (1);
 }
 
-int		ft_exec(int *a, int *b)
+int		ft_exec(int *a, int *b, int la)
 {
-	int r;
-	char *line;
+	int		lb;
+	short	x;
+	char	*line;
 
+	lb = 0;
 	while (get_next_line(0, &line))
 	{
-		if (ft_strcmp(line, "sa") == 0)
-			ft_swap_i(&a[0], &a[1]);
-		else if(ft_strcmp(line, "sb") == 0)
-			ft_swap_i(&b[0], &b[1]);
+		x = 0;
+		if (ft_strcmp(line, "pa") == 0)
+	  	x = ft_px(b, &lb, a, &la);
+		else if (ft_strcmp(line, "pb") == 0)
+		 	x = ft_px(a, &la, b, &lb);
+		else if (line[1] == 'a' || line[2] == 'a')
+			x = ft_a(a, la, line);
+		else if (line[1] == 'b' || line[2] == 'b')
+			x = ft_b(b, lb, line);
 		else if (ft_strcmp(line, "ss") == 0)
-		{
-			ft_swap_i(&b[0], &b[1]);
-			ft_swap_i(&a[0], &a[1]);
-		}
-
+			x = ft_ss(a, la, b, lb);
+		else if (ft_strcmp(line, "rr") == 0)
+			x = ft_rr(a, la, b, lb);
+		else if (ft_strcmp(line, "rrr") == 0)
+			x = ft_rrr(a, la, b, lb);
+		if (!x)
+			break;
 		ft_strdel(&line);
 	}
-	return (1);
+	dsp_stack(a, b, la, lb);
+	return (x);
 }
 
 int		process_stack(char **argv,int argc)
@@ -71,7 +81,7 @@ int		process_stack(char **argv,int argc)
 		a[x] = ft_atoi(argv[x + 1]);
 		b[x++] = 0;
 	}
-	if (ft_exec(a, b))
+	if (ft_exec(a, b, argc))
 	{
 		if (is_sorted(a, argc))
 			write(1, "OK\n", 3);
@@ -98,4 +108,3 @@ int	main(int argc, char **argv)
 	write(2, "Error\n", 6);
 	return (0);
 }
-
