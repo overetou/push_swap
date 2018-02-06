@@ -6,7 +6,7 @@
 /*   By: overetou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 11:45:07 by overetou          #+#    #+#             */
-/*   Updated: 2018/01/31 18:10:04 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/06 16:56:11 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ char			*ft_strfuse(char **str1, char *str2);
 void			ft_putnbr(int n);
 int				get_next_line(const int fd, char **line);
 void 			ft_swap_i(int *a, int *b);
+short			no_double_i(int *a, int length);
 
 #endif

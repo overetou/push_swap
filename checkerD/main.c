@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/06 16:13:11 by overetou          #+#    #+#             */
+/*   Updated: 2018/02/06 18:23:56 by overetou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdlib.h>
 #include "checker.h"
@@ -35,18 +47,17 @@ int		only_int(char **argv, int argc)
 	return (1);
 }
 
-int		ft_exec(int *a, int *b, int la)
+int		ft_exec(int *a, int *b, int la, short x)
 {
 	int		lb;
-	short	x;
 	char	*line;
 
 	lb = 0;
-	while (get_next_line(0, &line))
+	while (get_next_line(0, &line) && x)
 	{
 		x = 0;
 		if (ft_strcmp(line, "pa") == 0)
-	  	x = ft_px(b, &lb, a, &la);
+	  		x = ft_px(b, &lb, a, &la);
 		else if (ft_strcmp(line, "pb") == 0)
 		 	x = ft_px(a, &la, b, &lb);
 		else if (line[1] == 'a' || line[2] == 'a')
@@ -59,15 +70,13 @@ int		ft_exec(int *a, int *b, int la)
 			x = ft_rr(a, la, b, lb);
 		else if (ft_strcmp(line, "rrr") == 0)
 			x = ft_rrr(a, la, b, lb);
-		if (!x)
-			break;
 		ft_strdel(&line);
 	}
-	dsp_stack(a, b, la, lb);
+	free(b);
 	return (x);
 }
 
-int		process_stack(char **argv,int argc)
+int		process_stack(char **argv, int argc)
 {
 	int *a;
 	int *b;
@@ -79,9 +88,9 @@ int		process_stack(char **argv,int argc)
 	while (x != argc)
 	{
 		a[x] = ft_atoi(argv[x + 1]);
-		b[x++] = 0;
+		x++;
 	}
-	if (ft_exec(a, b, argc))
+	if (no_double_i(a, argc) && ft_exec(a, b, argc, 1))
 	{
 		if (is_sorted(a, argc))
 			write(1, "OK\n", 3);
@@ -92,7 +101,6 @@ int		process_stack(char **argv,int argc)
 	else
 		x = 0;
 	free(a);
-	free(b);
 	return (x);
 }
 
