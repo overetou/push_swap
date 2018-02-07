@@ -73,7 +73,7 @@ int		ft_exec(int *a, int *b, int la, short x)
 		ft_strdel(&line);
 	}
 	free(b);
-	return (x);
+	return (lb > 0 ? -1 : x);
 }
 
 int		process_stack(char **argv, int argc)
@@ -81,6 +81,7 @@ int		process_stack(char **argv, int argc)
 	int *a;
 	int *b;
 	int x;
+	int r;
 
 	a = (int*)malloc(sizeof(int) * argc);
 	b = (int*)malloc(sizeof(int) * argc);
@@ -90,9 +91,9 @@ int		process_stack(char **argv, int argc)
 		a[x] = ft_atoi(argv[x + 1]);
 		x++;
 	}
-	if (no_double_i(a, argc) && ft_exec(a, b, argc, 1))
+	if (no_double_i(a, argc) && (r = ft_exec(a, b, argc, 1)) != 0)
 	{
-		if (is_sorted(a, argc))
+		if (is_sorted(a, argc) && r == -1)
 			write(1, "OK\n", 3);
 		else
 			write(1, "KO\n", 3);
