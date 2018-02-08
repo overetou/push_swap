@@ -17,7 +17,7 @@
 
 short ft_sx(int *x, int lx);
 short ft_px(int *less, int *lless, int *more, int *lmore);
-void  dsp_stack(int *a, int *b, int la, int lb);
+void  dsp_stack(int *a, int la, int *b, int lb);
 short ft_rx(int *x, int lx);
 short ft_ss(int *a, int la, int *b, int lb);
 short ft_rrx(int *x, int lx);

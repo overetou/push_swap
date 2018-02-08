@@ -44,7 +44,7 @@ short	ft_px(int *less, int *lless, int *more, int *lmore)
 	return (1);
 }
 
-void	dsp_stack(int *a, int *b, int la, int lb)
+void	dsp_stack(int *a, int la, int *b, int lb)
 {
 	int x;
 

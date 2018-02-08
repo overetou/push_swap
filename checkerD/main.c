@@ -13,21 +13,17 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "checker.h"
+#include <stdio.h>
 
 int		is_sorted(int *a, int argc)
 {
 	int x;
-	int new;
-	int old;
 
-	x = 1;
-	old = a[0];
+	x = 0;
 	while (x != argc)
 	{
-		new = a[x];
-		if (old > new )
+		if (a[x] > a[x + 1])
 			return (0);
-		old = new;
 		x++;
 	}
 	return (1);
@@ -71,6 +67,7 @@ int		ft_exec(int *a, int *b, int la, short x)
 		else if (ft_strcmp(line, "rrr") == 0)
 			x = ft_rrr(a, la, b, lb);
 		ft_strdel(&line);
+		dsp_stack(a, la, b, lb);
 	}
 	free(b);
 	return (lb > 0 ? -1 : x);
@@ -93,7 +90,7 @@ int		process_stack(char **argv, int argc)
 	}
 	if (no_double_i(a, argc) && (r = ft_exec(a, b, argc, 1)) != 0)
 	{
-		if (is_sorted(a, argc) && r == -1)
+		if (is_sorted(a, argc) && r == 1)
 			write(1, "OK\n", 3);
 		else
 			write(1, "KO\n", 3);
