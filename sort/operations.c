@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 short	ft_sx(int *x, int lx)
 {
@@ -67,31 +67,27 @@ void	dsp_stack(int *a, int la, int *b, int lb)
 short	ft_rrx(int *x, int lx)
 {
 	int i;
-	int save;
 
 	i = lx - 1;
-	save = x[lx - 1];
-	while (i)
+	while (i != -1)
 	{
-		x[i] = x[i - 1];
+		x[i + 1] = x[i];
 		i--;
 	}
-	x[0] = save;
+	x[0] = x[lx];
 	return (1);
 }
 
 short ft_rx(int *x, int lx)
 {
 	int i;
-	int save;
 
-	i = 1;
-	save = x[0];
+	x[lx] = x[0];
+	i = 0;
 	while (i != lx)
 	{
-		x[i - 1] = x[i];
+		x[i] = x[i + 1];
 		i++;
 	}
-	x[lx - 1] = save;
 	return (1);
 }

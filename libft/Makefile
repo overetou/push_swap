@@ -28,7 +28,8 @@ SRC = ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	ft_lstadd.c ft_lstiter.c ft_lstmap.c \
 	ft_lstprint.c ft_tabprint.c ft_lstpushback.c ft_lstaddlink.c \
 	ft_atoi.c ft_lstaddnext.c ft_power.c ft_makestr.c \
-	ft_strfuse.c get_next_line.c ft_swap_i.c no_double_i.c
+	ft_strfuse.c get_next_line.c ft_swap_i.c no_double_i.c \
+	is_sorted.c
 
 OBJ = $(SRC:.c=.o)
 

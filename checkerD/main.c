@@ -15,20 +15,6 @@
 #include "checker.h"
 #include <stdio.h>
 
-int		is_sorted(int *a, int argc)
-{
-	int x;
-
-	x = 0;
-	while (x != argc)
-	{
-		if (a[x] > a[x + 1])
-			return (0);
-		x++;
-	}
-	return (1);
-}
-
 int		only_int(char **argv, int argc)
 {
 	int x;

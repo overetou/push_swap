@@ -93,5 +93,6 @@ void			ft_putnbr(int n);
 int				get_next_line(const int fd, char **line);
 void 			ft_swap_i(int *a, int *b);
 short			no_double_i(int *a, int length);
+int			is_sorted(int *a, int argc);
 
 #endif

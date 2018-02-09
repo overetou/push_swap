@@ -1,5 +1,5 @@
-#include "../libft/libft.h"
-#include "../checkerD/checker.h"
+#include "push_swap.h"
+#include <stdlib.h>
 
 short	is_sorted_r(int *b, int lb)
 {
@@ -39,7 +39,7 @@ short	test_r(int *a, int la, int *b, int lb)
 		ft_rx(b,lb);
 		return (1);
 	}
-	return (0)
+	return (0);
 }
 
 short	test_s(int *a, int la, int *b, int lb)
@@ -64,7 +64,7 @@ short	test_s(int *a, int la, int *b, int lb)
 		ft_sx(b,lb);
 		return (1);
 	}
-	return (0)
+	return (0);
 }
 
 void	solve(int *a, int *b, int la)
@@ -76,16 +76,16 @@ void	solve(int *a, int *b, int la)
 	{
 		if (!test_r(a, la, b, lb))
 		{
-			if (!test_sx(a, la, b, lb))
+			if (!test_s(a, la, b, lb))
 			{
 				ft_putstr("pb\n");
 				ft_px(a, &la, b, &lb);
 			}
 		}
 	}
-	while (lb > 1)
+	while (lb != 0)
 	{
-		ft_putstr("pa");
+		ft_putstr("pa\n");
 		ft_px(b, &lb, a, &la);
 	}
 }
@@ -93,18 +93,21 @@ void	solve(int *a, int *b, int la)
 int	main(int argc, char **argv)
 {
 	int x;
+	int *a;
+	int *b;
 
 	if (argc == 1)
 		return (0);
-	x = 0:
+	x = 1;
 	a = (int*)malloc(sizeof(int) * argc);
 	b = (int*)malloc(sizeof(int) * argc);
 	while (x != argc)
 	{
-		a[x] = ft_atoi(argv[x + 1]);
+		a[x - 1] = ft_atoi(argv[x]);
 		x++;
 	}
 	solve(a, b, argc - 1);
 	free(a);
 	free(b);
+	return (0);
 }
