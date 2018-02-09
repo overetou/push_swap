@@ -49,9 +49,4 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-eclean:
-	rm -f a.out
-
-cleanall: fclean eclean
-
 re: fclean $(NAME)

@@ -1,4 +1,4 @@
-#include "checker.h"
+#include "push_swap.h"
 
 short ft_a(int *a, int la, char *line)
 {

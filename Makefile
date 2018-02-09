@@ -10,26 +10,38 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAMEI = checker
+
+NAMEII = push_swap
+
 CFLAGS = -Wall -Werror -Wextra
 
 CC = gcc
 
 LIB = libft/libft.a
 
-SCHKR = checker/main.c
+SRC = src/operations. src/manager.c src/utils.c src/checker.c src/push_swap.c
 
-SPS = main.c
+OBJ = src/manager.o src/operations.o src/utils.o
+
+CHEK = src/checker.o
+
+PUSH = src/push_swap.o
 
 .PHONY: all, clean, fclean, re
 
 all: $(NAME)
 	make -C libft/
-	gcc $(SCHKR) $(LIB)
+	$(CC) $(CFLAGS) -c $(SRC)
+	$(CC) $(CFLAGS) $(CHEK) $(OBJ) $(LIB) -I inc/ -o $(NAMEI)
+	$(CC) $(CFLAGS) $(PUSH) $(OBJ) $(LIB) -I inc/ -o $(NAMEII)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(CHEK) $(PUSH)
+	make -C libft/ clean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAMEI) $(NAMEII)
+	make -C libft/ fclean
 
 re: fclean $(NAME)

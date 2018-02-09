@@ -1,6 +1,5 @@
 #include "push_swap.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 short	is_sorted_r(int *b, int lb)
 {
