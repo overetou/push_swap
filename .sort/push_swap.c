@@ -101,16 +101,21 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (0);
-	x = 1;
-	a = (int*)malloc(sizeof(int) * argc);
-	b = (int*)malloc(sizeof(int) * argc);
-	while (x != argc)
+	if (only_int(argv, argc))
 	{
-		a[x - 1] = ft_atoi(argv[x]);
-		x++;
+		x = 1;
+		a = (int*)malloc(sizeof(int) * argc);
+		b = (int*)malloc(sizeof(int) * argc);
+		while (x != argc)
+		{
+			a[x - 1] = ft_atoi(argv[x]);
+			x++;
+		}
+		no_double_i(a, argc) ? solve(a, b, argc - 1) : ft_putendl("ERROR");
+		free(a);
+		free(b);
 	}
-	solve(a, b, argc - 1);
-	free(a);
-	free(b);
+	else
+		ft_putendl("ERROR");
 	return (0);
 }

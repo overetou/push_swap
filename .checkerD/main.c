@@ -53,7 +53,6 @@ int		ft_exec(int *a, int *b, int la, short x)
 		else if (ft_strcmp(line, "rrr") == 0)
 			x = ft_rrr(a, la, b, lb);
 		ft_strdel(&line);
-		dsp_stack(a, la, b, lb);
 	}
 	free(b);
 	return (lb > 0 ? -1 : x);
