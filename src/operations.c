@@ -16,7 +16,7 @@ short	ft_sx(int *x, int lx)
 {
 	if (lx > 1)
 		ft_swap_i(&x[0], &x[1]);
-		return (1);
+	return (1);
 }
 
 short	ft_px(int *less, int *lless, int *more, int *lmore)

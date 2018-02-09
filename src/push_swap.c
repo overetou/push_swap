@@ -5,9 +5,9 @@ short	is_sorted_r(int *b, int lb)
 {
 	int x;
 
-	x = 0;
 	if (lb < 2)
 		return(1);
+	x = 0;
 	while (x != lb)
 	{
 		if (b[x] < b[x + 1])
@@ -87,9 +87,9 @@ void	solve(int *a, int *b, int la)
 	{
 		ft_putstr("pa\n");
 		ft_px(b, &lb, a, &la);
+		if (!is_sorted(a, la))
+			solve(a, b, la);
 	}
-	if (!is_sorted(a, la))
-		solve(a, b, la);
 }
 
 int	main(int argc, char **argv)

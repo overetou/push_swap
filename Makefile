@@ -20,21 +20,21 @@ CC = gcc
 
 LIB = libft/libft.a
 
-SRC = src/operations. src/manager.c src/utils.c src/checker.c src/push_swap.c
+SRC = src/operations.c src/manager.c src/utils.c src/checker.c src/push_swap.c
 
-OBJ = src/manager.o src/operations.o src/utils.o
+OBJ = manager.o operations.o utils.o
 
-CHEK = src/checker.o
+CHEK = checker.o
 
-PUSH = src/push_swap.o
+PUSH = push_swap.o
 
 .PHONY: all, clean, fclean, re
 
 all: $(NAME)
 	make -C libft/
-	$(CC) $(CFLAGS) -c $(SRC)
-	$(CC) $(CFLAGS) $(CHEK) $(OBJ) $(LIB) -I inc/ -o $(NAMEI)
-	$(CC) $(CFLAGS) $(PUSH) $(OBJ) $(LIB) -I inc/ -o $(NAMEII)
+	$(CC) $(CFLAGS) -c $(SRC) -I inc/
+	$(CC) $(CFLAGS) $(CHEK) $(OBJ) $(LIB) -o $(NAMEI)
+	$(CC) $(CFLAGS) $(PUSH) $(OBJ) $(LIB) -o $(NAMEII)
 
 clean:
 	rm -f $(OBJ) $(CHEK) $(PUSH)
@@ -44,4 +44,4 @@ fclean: clean
 	rm -f $(NAMEI) $(NAMEII)
 	make -C libft/ fclean
 
-re: fclean $(NAME)
+re: fclean all
