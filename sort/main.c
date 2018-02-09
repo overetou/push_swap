@@ -1,5 +1,6 @@
 #include "push_swap.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 short	is_sorted_r(int *b, int lb)
 {
@@ -72,7 +73,7 @@ void	solve(int *a, int *b, int la)
 	int lb;
 
 	lb = 0;
-	while (!is_sorted(a, la) && is_sorted_r(b, lb))
+	while (!is_sorted(a, la) || !is_sorted_r(b, lb))
 	{
 		if (!test_r(a, la, b, lb))
 		{
@@ -88,6 +89,8 @@ void	solve(int *a, int *b, int la)
 		ft_putstr("pa\n");
 		ft_px(b, &lb, a, &la);
 	}
+	if (!is_sorted(a, la))
+		solve(a, b, la);
 }
 
 int	main(int argc, char **argv)
