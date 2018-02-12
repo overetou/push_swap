@@ -40,9 +40,17 @@ short	test_r(int *a, int la, int *b, int lb)
 	}
 	else if (lb > 1 && b[0] < b[lb - 1])
 	{
-		ft_putstr("rb\n");
-		ft_rx(b,lb);
-		return (1);
+		if (b[lb - 1] > b[1])
+		{
+			ft_putstr("rrb\n");
+			ft_rrx(b, lb);
+		}
+		else
+		{
+			ft_putstr("rb\n");
+			ft_rx(b,lb);
+			return (1);
+		}
 	}
 	return (0);
 }
@@ -72,29 +80,27 @@ short	test_s(int *a, int la, int *b, int lb)
 	return (0);
 }
 
-void	solve(int *a, int *b, int la)
+int		solve(int *a, int *b, int la, int lb)
 {
-	int lb;
-
-	lb = 0;
-	while (!is_sorted(a, la) || !is_sorted_r(b, lb))
+	while (!is_sorted(a, la))
 	{
-		if (!test_r(a, la, b, lb))
+		if (!test_s(a, la, b, lb))
 		{
-			if (!test_s(a, la, b, lb))
+			if (!test_r(a, la, b, lb))
 			{
 				ft_putstr("pb\n");
 				ft_px(a, &la, b, &lb);
 			}
 		}
 	}
-	while (lb != 0)
+	while (lb)
 	{
 		ft_putstr("pa\n");
 		ft_px(b, &lb, a, &la);
-		if (!is_sorted(a, la))
-			solve(a, b, la);
+		if (!is_sorted(a, la) || !is_sorted_r(b, lb))
+			lb = solve(a, b, la, lb);
 	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -115,7 +121,7 @@ int	main(int argc, char **argv)
 			a[x - 1] = ft_atoi(argv[x]);
 			x++;
 		}
-		no_double_i(a, argc - 1) ? solve(a, b, argc - 1) : ft_putendl("ERROR");
+		no_double_i(a, argc - 1) ? solve(a, b, argc - 1, 0) : ft_putendl("ERROR");
 		free(a);
 		free(b);
 	}

@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 14:32:19 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/06 16:00:01 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/12 20:56:53 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ short	ft_px(int *less, int *lless, int *more, int *lmore)
 
 	if (*lless)
 	{
-		i = (*lmore) - 1;
-		while (i != -1)
+		i = (*lmore);
+		(*lmore)++;
+		while (i)
 		{
-			more[i + 1] = more[i];
+			more[i] = more[i - 1];
 			i--;
 		}
 		more[0] = less[0];
-		(*lmore)++;
-		i = 0;
-		while (i < (*lless))
+		i = 1;
+		while (i != (*lless))
 		{
-			less[i] = less[i + 1];
+			less[i - 1] = less[i];
 			i++;
 		}
 		(*lless)--;
@@ -54,6 +54,8 @@ void	dsp_stack(int *a, int la, int *b, int lb)
 		ft_putnbr(a[x++]);
 		ft_putchar(' ');
 	}
+	ft_putstr("---/");
+	ft_putnbr(la);
 	ft_putchar('\n');
 	x = 0;
 	while (x != lb)
@@ -61,6 +63,8 @@ void	dsp_stack(int *a, int la, int *b, int lb)
 		ft_putnbr(b[x++]);
 		ft_putchar(' ');
 	}
+	ft_putstr("---/");
+	ft_putnbr(lb);
 	ft_putchar('\n');
 }
 
@@ -68,7 +72,8 @@ short	ft_rrx(int *x, int lx)
 {
 	int i;
 	int save;
-
+	if (lx < 2)
+		return (1);
 	i = lx - 1;
 	save = x[lx - 1];
 	while (i)

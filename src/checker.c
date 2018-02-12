@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/06 16:13:11 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/12 14:16:15 by overetou         ###   ########.fr       */
+/*   Created: 2018/02/12 15:59:22 by overetou          #+#    #+#             */
+/*   Updated: 2018/02/12 20:50:28 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		ft_exec(int *a, int *b, int la, short x)
 		else if (ft_strcmp(line, "rrr") == 0)
 			x = ft_rrr(a, la, b, lb);
 		ft_strdel(&line);
+		dsp_stack(a, la, b, lb);
 		if (!x)
 			break ;
 	}
