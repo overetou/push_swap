@@ -79,7 +79,7 @@ void	solve(int *a, int *b, int la)
 	lb = 0;
 	while (!is_sorted(a, la) || !is_sorted_r(b, lb))
 	{
-		if (!test_r(a, la - 1, b, lb - 1))
+		if (!test_r(a, la, b, lb))
 		{
 			if (!test_s(a, la, b, lb))
 			{

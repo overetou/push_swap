@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 16:13:11 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/06 18:23:56 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:16:15 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int		ft_exec(int *a, int *b, int la, short x)
 		else if (ft_strcmp(line, "rrr") == 0)
 			x = ft_rrr(a, la, b, lb);
 		ft_strdel(&line);
+		if (!x)
+			break ;
 	}
 	free(b);
 	return (lb > 0 ? -1 : x);
