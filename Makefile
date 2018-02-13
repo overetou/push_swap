@@ -6,7 +6,7 @@
 #    By: overetou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 12:25:00 by overetou          #+#    #+#              #
-#    Updated: 2018/01/31 15:19:14 by overetou         ###   ########.fr        #
+#    Updated: 2018/02/13 19:27:03 by overetou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,13 @@ CC = gcc
 
 LIB = libft/libft.a
 
-SRC = src/operations.c src/manager.c src/utils.c src/checker.c src/push_swap.c
+SRC = src/operations.c src/manager.c src/utils.c src/checker.c src/push_swap.c src/pivot.c src/sub_pivot.c
 
-OBJ = manager.o operations.o utils.o
+OBJ = manager.o operations.o utils.o sub_pivot.o
 
 CHEK = checker.o
 
-PUSH = push_swap.o
+PUSH = push_swap.o pivot.o
 
 .PHONY: all, clean, fclean, re
 
