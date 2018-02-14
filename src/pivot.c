@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:48 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/14 18:57:37 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/14 20:02:06 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	pivot(int *a, int *b, int la, int lb)
 		target = find_next(a, la, index);
 		if (target != a[0])
 			go_to_target(target, a, la);
-		else if (target < index[la / 2 - 1])
+		else if (target < index[la / 2 - 1] || get_ind[target, index] == get_ind(b[0] + 1))
 		{
 			involve_b(target, b, lb);
 			write(0, "pb\n", 3);

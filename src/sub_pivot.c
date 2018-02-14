@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:35 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/14 18:57:41 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/14 20:35:23 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,17 @@ void	go_to_target(int target,int *a, int la)
 void	involve_b(int target, int *b, int lb)
 {
 	int i;
+	int save;
 
 	i = 0;
 	if (lb > 1)
 	{
-		while (i != lb - 1 && a[0] > )
-			if (
+		while (i != lb && target > b[i])
+			i++;
+		save = b[i]
+		if (i > lb / 2 - 1)
+			while
+	}
 	return (0);
 }
 
