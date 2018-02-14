@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pivot.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/14 14:14:48 by overetou          #+#    #+#             */
+/*   Updated: 2018/02/14 15:07:34 by overetou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <push_swap.h>
@@ -81,18 +93,18 @@ void	pivot(int *a, int *b, int la, int lb)
 
 	index = dirty_sort(a, la, b, lb);
 	target = a[1];
-//	while (!wheel_ok(a, la))
-//	{
-//		if (!target_ok(target, a, la, index))
-//		{
-//			target = find_next(a, la,index);
-//			go_to_target(target, a, la);
-//		}
-//		if (!b_involved(a, &la, b, &lb))
-//			move_target(target, a, la);
-//	}
+	while (!wheel_ok(a, la))
+	{
+		target = find_next(a, la, index);
+		go_to_target(target, a, la);
+		if (target < index[la / 2 - 1])
+			b_involved(a, &la, b, &lb);
+		else
+			move_target(target, a, la);
+	}
 	//spin_til_ok(a, la);
 	//empty_b(a, &la, b, &lb);
-	//dsp_stack(a, la, b, lb);
+	dsp_stack(a, la, b, lb);
+	free(index);
 }
 

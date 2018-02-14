@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:11:42 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/13 19:49:23 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/14 12:52:13 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		solve(int *a, int *b, int la, int lb);
 void	choose(int *a, int *b, int la);
 void	pivot(int *a, int *b, int la, int lb);
 short	test_s(int *a, int la, int *b, int lb);
-short	target_ok(int target, int *a, int la, int *index);
 void	go_to_target(int target, int *a, int la);
+int		find_next(int *a, int la, int *index);
 
 #endif
