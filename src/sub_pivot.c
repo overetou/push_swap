@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:35 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/14 18:16:32 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:57:41 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,44 +65,28 @@ void	go_to_target(int target,int *a, int la)
 {
 	int i;
 
-	i = 0;
-	while (target != a[i])
-		i++;
+	i = get_ind(target, a);
 	if (i > la / 2 - 1)
 	{
-		while (target != a[0])
-		{
-			write(0, "rra\n", 4);
-			ft_rrx(a, la);
-		}
+		write(0, "rra\n", 4);
+		ft_rrx(a, la);
 	}
 	else
 	{
-		while (target != a[0])
-		{
-			write(0, "ra\n", 3);
-			ft_rx(a, la);
-		}
+		write(0, "ra\n", 3);
+		ft_rx(a, la);
 	}
 }
 
-void	b_involved(int *a, int *la, int *b, int *lb)
+void	involve_b(int target, int *b, int lb)
 {
-	write(0, "pb\n", 3);
-	ft_px(a, la, b, lb);
-	while (!wheel_ok)
+	int i;
+
+	i = 0;
+	if (lb > 1)
 	{
-		if (b[0] < b[1])
-		{
-			write(0, "sb\n", 3);
-			ft_sx(b, lb);
-		}
-		else if (b[0] < b [lb- 1])
-		{
-			write(0, "rb\n", 3);
-			ft_rx(b, lb);
-		}
-	}
+		while (i != lb - 1 && a[0] > )
+			if (
 	return (0);
 }
 
