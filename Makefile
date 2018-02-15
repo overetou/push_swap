@@ -31,7 +31,7 @@ PUSH = push_swap.o pivot.o
 .PHONY: all, clean, fclean, re
 
 all: $(NAME)
-	make -C libft/
+	#make -C libft/
 	$(CC) $(CFLAGS) -c $(SRC) -I inc/
 	$(CC) $(CFLAGS) $(CHEK) $(OBJ) $(LIB) -o $(NAMEI)
 	$(CC) $(CFLAGS) $(PUSH) $(OBJ) $(LIB) -o $(NAMEII)

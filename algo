@@ -1,4 +1,4 @@
-Inserer dans b : mettre le plus petit element superieur a l'entrant a droite. Si pas de superieur, mettre le plus petit a droite. -> faire une fonction qui repere le plus petit superieur ou a defaut le plus petit et le renvoie.
+Inserer dans b : mettre le plus grand element inferieur a l'entrant en ligne. Si pas de superieur, mettre le plus grand en ligne. -> faire une fonction qui repere le plus petit superieur ou a defaut le plus petit et le renvoie.
 -> faire une fonction qui determine le sens de rotation optimal pour mettre une valeur en ligne.
 
 Dans ra, on cherche en priorite un membre du tiers bas, ou un chiffre ,sans ensemble precedent, plus fort que son suivant. Si il n'y a plus ni l'un ni l'autre, on fait tourer a jusqua atteindre le prochain de b
