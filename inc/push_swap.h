@@ -32,5 +32,6 @@ void	pivot(int *a, int *b, int la, int lb);
 short	test_s(int *a, int la, int *b, int lb);
 void	go_to_target(int target, int *a, int la);
 int		find_next(int *a, int la, int *index);
+int		get_ind(int n, int *ind);
 
 #endif

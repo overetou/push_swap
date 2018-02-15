@@ -47,17 +47,25 @@ short	target_ok(int target, int *a, int la, int *ind)
 	return (0);
 }
 
-int		find_next(int *a, int la, int *ind)
+int		find_next(int *a, int la, int *ind, int *b)
 {
 	int forward;
 	int backward;
+	int b_i;
 
 	forward = 0;
 	backward = 1;
+	while (!target_ok(a[la - backward], a, la, ind) && backward != la)
+		backward++;
+	if (backward == la)
+	{
+		b_i = get_ind(b[0], ind);
+		while (get_ind(a[forward], ind) != b_i + 1)
+			forward++;
+		return (forward);
+	}
 	while (!target_ok(a[forward], a, la, ind))
 		forward++;
-	while (!target_ok(a[la - backward], a, la, ind))
-		backward++;
 	return (backward < forward ? a[la - backward] : a[forward]);
 }
 
