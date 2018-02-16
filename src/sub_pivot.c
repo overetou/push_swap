@@ -41,16 +41,16 @@ short	targ_ok(int targ, int *a, int la, int *ind)
 		if (get_ind(a[p - 1], ind) != i - 1 && a[p] > a[0])
 			return (1);
 	}
-	else if (get_ind(a[p - 1], ind) != i - 1 && a[i] > a[i + 1])
+	else if (get_ind(a[p - 1], ind) != i - 1 && a[p] > a[p + 1])
 		return (1);
 	return (0);
 }
 
-int		find_next(int *a, int la, int *ind, int *b)
+int		find_next(int *a, int la, int *ind)
 {
 	int forward;
 	int backward;
-	int b_i;
+	int best;
 
 	forward = 0;
 	backward = 1;
@@ -58,10 +58,14 @@ int		find_next(int *a, int la, int *ind, int *b)
 		backward++;
 	if (backward == la + 1)
 	{
-		b_i = get_ind(b[0], ind) + 1;
-		while (get_ind(a[forward], ind) != b_i)
+		best = a[0];
+		while (forward != la)
+		{
+			if (best > a[forward])
+				best = a[forward];
 			forward++;
-		return (forward);
+		}
+		return (best);
 	}
 	while (!targ_ok(a[forward], a, la, ind))
 		forward++;
@@ -87,12 +91,12 @@ void	go_to_targ(int targ, int *a, int la)
 
 void	involve_b(int targ, int *b, int lb)
 {
-	int i;
+	int wanted;
 
 	if (lb > 1)
 	{
-		i = find_point(targ, b, lb);
-		spin_b(i, get_ind(i, b), b, lb);
+		wanted = find_point(targ, b, lb);
+		spin_b(wanted, get_ind(wanted, b), b, lb);
 	}
 }
 

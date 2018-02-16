@@ -1,12 +1,34 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+short	is_sorted_r(int *b, int lb)
+{
+	int x;
+
+	if (lb < 2)
+		return(1);
+	x = 0;
+	while (x != lb)
+	{
+		if (b[x] < b[x + 1])
+			return (0);
+		x++;
+	}
+	return (1);
+}
+
 void	b_spin_til_ok(int *b, int lb)
 {
 	int i;
 	
-	if (is_sorted(b, lb))
+	if (is_sorted_r(b, lb))
 		return ;
+	if (lb == 2)
+	{
+		write(0, "sb\n", 3);
+		ft_sx(b, lb);
+		return ;
+	}
 	i = 1;
 	while (b[i] < b[i - 1])
 		i++;

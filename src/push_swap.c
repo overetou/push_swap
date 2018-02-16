@@ -1,22 +1,6 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-short	is_sorted_r(int *b, int lb)
-{
-	int x;
-
-	if (lb < 2)
-		return(1);
-	x = 0;
-	while (x != lb)
-	{
-		if (b[x] < b[x + 1])
-			return (0);
-		x++;
-	}
-	return (1);
-}
-
 short	test_r(int *a, int la, int *b, int lb)
 {
 	if (la > 1 && a[0] > a[la - 1])
