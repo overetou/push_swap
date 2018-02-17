@@ -32,7 +32,7 @@ void	choose(int *a, int *b, int la);
 void	pivot(int *a, int *b, int la, int lb);
 short	test_s(int *a, int la, int *b, int lb);
 void	go_to_targ(int targ, int *a, int la);
-int	find_next(int *a, int la, int *ind);
+int	find_next(int *a, int la, int *ind, int li);
 int	get_ind(int n, int *ind);
 int	find_point(int targ, int *b, int lb);
 void	involve_b(int targ, int *b, int lb);

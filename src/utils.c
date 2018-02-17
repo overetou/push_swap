@@ -7,10 +7,10 @@ short	is_sorted_r(int *b, int lb)
 
 	if (lb < 2)
 		return(1);
-	x = 0;
+	x = 1;
 	while (x != lb)
 	{
-		if (b[x] < b[x + 1])
+		if (b[x - 1] < b[x])
 			return (0);
 		x++;
 	}
@@ -25,7 +25,7 @@ void	b_spin_til_ok(int *b, int lb)
 		return ;
 	if (lb == 2)
 	{
-		write(0, "sb\n", 3);
+		write(1, "sb\n", 3);
 		ft_sx(b, lb);
 		return ;
 	}
@@ -36,7 +36,7 @@ void	b_spin_til_ok(int *b, int lb)
 	{
 		while (i++ != lb)
 		{
-			write(0, "rrb\n", 4);
+			write(1, "rrb\n", 4);
 			ft_rrx(b, lb);
 		}
 	}
@@ -44,7 +44,7 @@ void	b_spin_til_ok(int *b, int lb)
 	{
 		while (i--)
 		{
-			write(0, "rb\n", 3);
+			write(1, "rb\n", 3);
 			ft_rx(b, lb);
 		}
 	}
@@ -107,7 +107,7 @@ void	spin_b(int wanted, int i, int *b, int lb)
 	{
 		while (b[0] != wanted)
 		{
-			write(0, "rrb\n", 4);
+			write(1, "rrb\n", 4);
 			ft_rrx(b, lb);
 		}
 	}
@@ -115,7 +115,7 @@ void	spin_b(int wanted, int i, int *b, int lb)
 	{
 		while (b[0] != wanted)
 		{
-			write(0, "rb\n", 3);
+			write(1, "rb\n", 3);
 			ft_rx(b, lb);
 		}
 	}

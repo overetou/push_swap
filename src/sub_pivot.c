@@ -22,12 +22,12 @@ int		get_ind(int n, int *ind)
 	return (i);
 }
 
-short	targ_ok(int targ, int *a, int la, int *ind)
+short	targ_ok(int targ, int *a, int la, int *ind, int li)
 {
 	int p;
 	int i;
 
-	if (targ < ind[la / 2])
+	if (targ < ind[li / 2])
 		return (1);
 	p = get_ind(targ, a);
 	i = get_ind(targ, ind);
@@ -46,7 +46,7 @@ short	targ_ok(int targ, int *a, int la, int *ind)
 	return (0);
 }
 
-int		find_next(int *a, int la, int *ind)
+int		find_next(int *a, int la, int *ind, int li)
 {
 	int forward;
 	int backward;
@@ -54,7 +54,7 @@ int		find_next(int *a, int la, int *ind)
 
 	forward = 0;
 	backward = 1;
-	while (backward != la + 1 && !targ_ok(a[la - backward], a, la, ind))
+	while (backward != la + 1 && !targ_ok(a[la - backward], a, la, ind, li))
 		backward++;
 	if (backward == la + 1)
 	{
@@ -67,7 +67,7 @@ int		find_next(int *a, int la, int *ind)
 		}
 		return (best);
 	}
-	while (!targ_ok(a[forward], a, la, ind))
+	while (!targ_ok(a[forward], a, la, ind, li))
 		forward++;
 	return (backward < forward ? a[la - backward] : a[forward]);
 }
@@ -79,12 +79,12 @@ void	go_to_targ(int targ, int *a, int la)
 	i = get_ind(targ, a);
 	if (i > la / 2 - 1)
 	{
-		write(0, "rra\n", 4);
+		write(1, "rra\n", 4);
 		ft_rrx(a, la);
 	}
 	else
 	{
-		write(0, "ra\n", 3);
+		write(1, "ra\n", 3);
 		ft_rx(a, la);
 	}
 }
