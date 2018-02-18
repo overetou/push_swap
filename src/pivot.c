@@ -104,28 +104,21 @@ void	pivot(int *a, int *b, int la, int lb)
 	while (!wheel_ok(a, la))
 	{
 		targ = find_next(a, la, ind);
-		while (a[0] > a[1] && a[0] != ind[li - 1])
+		if (a[0] > a[1] && a[0] != ind[li - 1])
 		{
 			write(1, "sa\n", 3);
 			ft_sx(a, la);
-		
-			if (a[0] < ind[li / 2] || get_ind(a[0], ind) == get_ind(b[0], ind) + 1)
-			{
-				involve_b(a[0], b, lb);
-				write(1, "pb\n", 3);
-				ft_px(a, &la, b, &lb);
-			}
 		}
-		if (a[0] < ind[li / 2] || get_ind(a[0], ind) == get_ind(b[0], ind) + 1)
+		else if (a[0] < ind[li / 2] || get_ind(a[0], ind) == get_ind(b[0], ind) + 1)
 		{
 			involve_b(a[0], b, lb);
 			write(1, "pb\n", 3);
 			ft_px(a, &la, b, &lb);
 		}
-		if (targ != a[0])
+		else if (targ != a[0])
 			go_to_targ(targ, a, la);
 		else
-			go_to_targ_2(ind[get_ind(targ, ind) + 1], a, la);
+			go_to_targ(ind[get_ind(targ, ind) + 1], a, la);
 //	dsp_stack(a, la, b, lb);
 	}
 	spin_til_ok(a, la);
