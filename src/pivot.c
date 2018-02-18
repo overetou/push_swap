@@ -12,6 +12,7 @@
 
 #include <stdlib.h>
 #include <push_swap.h>
+#include <stdio.h>
 
 void	spin_til_ok(int *a, int la)
 {
@@ -102,27 +103,34 @@ void	pivot(int *a, int *b, int la, int lb)
 	li = la;
 	while (!wheel_ok(a, la))
 	{
-		targ = find_next(a, la, ind, li);
-		if (targ != a[0])
-			go_to_targ(targ, a, la);
-		else if (targ < ind[li / 2] || get_ind(targ, ind) == get_ind(b[0], ind) + 1)
-		{
-			involve_b(targ, b, lb);
-			write(1, "pb\n", 3);
-			ft_px(a, &la, b, &lb);
-		}
-		else
+		targ = find_next(a, la, ind);
+		while (a[0] > a[1] && a[0] != ind[li - 1])
 		{
 			write(1, "sa\n", 3);
 			ft_sx(a, la);
+		
+			if (a[0] < ind[li / 2] || get_ind(a[0], ind) == get_ind(b[0], ind) + 1)
+			{
+				involve_b(a[0], b, lb);
+				write(1, "pb\n", 3);
+				ft_px(a, &la, b, &lb);
+			}
 		}
-		if (lb > la / 2)
-			b_spin_til_ok(b, lb);
-	dsp_stack(a, la, b, lb);
+		if (a[0] < ind[li / 2] || get_ind(a[0], ind) == get_ind(b[0], ind) + 1)
+		{
+			involve_b(a[0], b, lb);
+			write(1, "pb\n", 3);
+			ft_px(a, &la, b, &lb);
+		}
+		if (targ != a[0])
+			go_to_targ(targ, a, la);
+		else
+			go_to_targ_2(ind[get_ind(targ, ind) + 1], a, la);
+//	dsp_stack(a, la, b, lb);
 	}
 	spin_til_ok(a, la);
 	empty_b(a, &la, b, &lb);
-	dsp_stack(a, la, b, lb);
+	//dsp_stack(a, la, b, lb);
 	free(ind);
 	if (is_sorted(a, la))
 		ft_putendl("ok");

@@ -3,3 +3,7 @@ Inserer dans b : mettre le plus grand element inferieur a l'entrant en ligne. Si
 
 Dans ra, on cherche en priorite un membre du tiers bas, ou un chiffre ,sans ensemble precedent, plus fort que son suivant. Si il n'y a plus ni l'un ni l'autre, on fait tourer a jusqua atteindre le prochain de b
 et on l'y range jusqua ce que tous les ensembles ne forment plus qu'un.
+
+Version plus puissante : creer une suite decroissante a partir du plus haut, toujours se diriger vers le chainon suivant par le chemin le plus court et trier au passage, tout en fourrant dans le sac si possible. Une fois que circle ok, on rempli à la volée.
+
+fonction : remplissage a la volée, trouver le chainon suivant, aller au chainon suivant, amener le chainon derriere la chaine par le chemin le plus court.

@@ -32,12 +32,13 @@ void	choose(int *a, int *b, int la);
 void	pivot(int *a, int *b, int la, int lb);
 short	test_s(int *a, int la, int *b, int lb);
 void	go_to_targ(int targ, int *a, int la);
-int	find_next(int *a, int la, int *ind, int li);
+int	find_next(int *a, int la, int *ind);
 int	get_ind(int n, int *ind);
 int	find_point(int targ, int *b, int lb);
 void	involve_b(int targ, int *b, int lb);
 void	spin_b(int wanted, int i, int *b, int lb);
 void	b_spin_til_ok(int *b, int lb);
 short	is_sorted_r(int *b, int lb);
+void	go_to_targ_2(int targ, int *a, int la);
 
 #endif
