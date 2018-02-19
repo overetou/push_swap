@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:35 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/19 17:47:43 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/19 20:35:54 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	go_to_targ(int targ, int *a, int la)
 	int i;
 	
 	i = get_ind(targ, a);
-	if (i > la / 2 - 1)
+	if (i > la / 2)
 	{
 		write(1, "rra\n", 4);
 		ft_rrx(a, la);
@@ -68,6 +68,37 @@ void	go_to_targ(int targ, int *a, int la)
 	{
 		write(1, "ra\n", 3);
 		ft_rx(a, la);
+	}
+}
+
+void	go_to_targ_2(int obj, int *a, int la, int targ)
+{
+	int i;
+	
+	i = get_ind(obj, a);
+	if (i > la / 2)
+	{
+		if (targ == a[1])
+		{
+			write(1, "sa\n", 3);
+			ft_sx(a, la);
+		}
+		write(1, "rra\n", 4);
+		ft_rrx(a, la);
+	}
+	else
+	{
+		if (a[0] > a[1])
+		{
+			write(1, "sa\n", 3);
+			ft_sx(a, la);
+			return ;
+		}
+		if (a[1] != obj && a[2] != obj)
+		{
+			write(1, "ra\n", 3);
+			ft_rx(a, la);
+		}
 	}
 }
 

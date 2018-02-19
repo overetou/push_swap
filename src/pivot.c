@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:48 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/19 17:50:30 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/19 19:57:36 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	spin_til_ok(int *a, int la, int *b, int lb)
 	if (lb > 1)
 		b_spin_til_ok(b, lb);
 	i = 1;
+	best = a[0];
 	while (i != la)
 	{
 		if (a[i] > b[0] && a[i] < best)
@@ -31,7 +32,7 @@ void	spin_til_ok(int *a, int la, int *b, int lb)
 	i = get_ind(best, a);
 	if (i > la / 2)
 	{
-		while (++i != la)
+		while (i++ != la)
 		{
 			write(1, "rra\n", 4);
 			ft_rrx(a, la);
@@ -39,7 +40,7 @@ void	spin_til_ok(int *a, int la, int *b, int lb)
 	}
 	else
 	{
-		while (--i)
+		while (i--)
 		{
 			write(1, "ra\n", 3);
 			ft_rx(a, la);
@@ -114,16 +115,15 @@ void	pivot(int *a, int *b, int la, int lb)
 			write(1, "pb\n", 3);
 			ft_px(a, &la, b, &lb);
 		}
-		else if (a[0] > a[1] && a[0] != ind[li - 1])
+		else if (a[0] > a[1] && a[0] != ind[li - 1] && a[0] != targ)
 		{
 			write(1, "sa\n", 3);
 			ft_sx(a, la);
 		}
-		else if (targ != a[0])
+		else if (targ != a[0] && targ != a[1])
 			go_to_targ(targ, a, la);
 		else
-			go_to_targ(ind[get_ind(targ, ind) + 1], a, la);
-//	dsp_stack(a, la, b, lb);
+			go_to_targ_2(ind[get_ind(targ, ind) + 1], a, la, targ);
 	}
 	spin_til_ok(a, la, b, lb);
 	empty_b(a, &la, b, &lb);
