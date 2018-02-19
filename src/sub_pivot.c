@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:35 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/14 20:35:23 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:47:43 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,28 +63,6 @@ void	go_to_targ(int targ, int *a, int la)
 	{
 		write(1, "rra\n", 4);
 		ft_rrx(a, la);
-	}
-	else
-	{
-		write(1, "ra\n", 3);
-		ft_rx(a, la);
-	}
-}
-
-void	go_to_targ_2(int targ, int *a, int la)
-{
-	int i;
-	
-	i = get_ind(targ, a);
-	if (i > la / 2 - 1)
-	{
-		while (a[0] != targ)
-		{
-			write(1, "rra\n", 4);
-			ft_rrx(a, la);
-			write(1, "sa\n", 3);
-			ft_sx(a, la);
-		}
 	}
 	else
 	{

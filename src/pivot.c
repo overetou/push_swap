@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:48 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/14 20:02:06 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:50:30 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 #include <push_swap.h>
 #include <stdio.h>
 
-void	spin_til_ok(int *a, int la)
+void	spin_til_ok(int *a, int la, int *b, int lb)
 {
 	int i;
+	int best;
 	
-	if (is_sorted(a, la))
-		return ;
+	if (lb > 1)
+		b_spin_til_ok(b, lb);
 	i = 1;
-	while (a[i] > a[i - 1])
+	while (i != la)
+	{
+		if (a[i] > b[0] && a[i] < best)
+			best = a[i];
 		i++;
+	}
+	i = get_ind(best, a);
 	if (i > la / 2)
 	{
-		while (i++ != la)
+		while (++i != la)
 		{
 			write(1, "rra\n", 4);
 			ft_rrx(a, la);
@@ -33,7 +39,7 @@ void	spin_til_ok(int *a, int la)
 	}
 	else
 	{
-		while (i--)
+		while (--i)
 		{
 			write(1, "ra\n", 3);
 			ft_rx(a, la);
@@ -43,17 +49,15 @@ void	spin_til_ok(int *a, int la)
 
 void	empty_b(int *a, int *la, int *b, int *lb)
 {
-	if ((*lb) > 1)
-		b_spin_til_ok(b, (*lb));
 	while (*lb)
 	{
+		while (a[(*la) - 1] > b[0] && a[(*la) - 1] < a[(*la) - 2])
+		{
+			write(1, "rra\n", 4);
+			ft_rrx(a, *la);
+		}
 		write(1, "pa\n", 3);
 		ft_px(b, lb, a, la);
-		if (a[0] > a[1])
-		{
-			write(1, "sa\n", 3);
-			ft_sx(a, (*la));
-		}
 	}
 }
 
@@ -104,16 +108,16 @@ void	pivot(int *a, int *b, int la, int lb)
 	while (!wheel_ok(a, la))
 	{
 		targ = find_next(a, la, ind);
-		if (a[0] > a[1] && a[0] != ind[li - 1])
-		{
-			write(1, "sa\n", 3);
-			ft_sx(a, la);
-		}
-		else if (a[0] < ind[li / 2] || get_ind(a[0], ind) == get_ind(b[0], ind) + 1)
+		if (a[0] < ind[li / 2] || get_ind(a[0], ind) == get_ind(b[0], ind) + 1)
 		{
 			involve_b(a[0], b, lb);
 			write(1, "pb\n", 3);
 			ft_px(a, &la, b, &lb);
+		}
+		else if (a[0] > a[1] && a[0] != ind[li - 1])
+		{
+			write(1, "sa\n", 3);
+			ft_sx(a, la);
 		}
 		else if (targ != a[0])
 			go_to_targ(targ, a, la);
@@ -121,7 +125,7 @@ void	pivot(int *a, int *b, int la, int lb)
 			go_to_targ(ind[get_ind(targ, ind) + 1], a, la);
 //	dsp_stack(a, la, b, lb);
 	}
-	spin_til_ok(a, la);
+	spin_til_ok(a, la, b, lb);
 	empty_b(a, &la, b, &lb);
 	//dsp_stack(a, la, b, lb);
 	free(ind);

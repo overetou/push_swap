@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:11:42 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/14 12:52:13 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/19 15:44:13 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	spin_b(int wanted, int i, int *b, int lb);
 void	b_spin_til_ok(int *b, int lb);
 short	is_sorted_r(int *b, int lb);
 void	go_to_targ_2(int targ, int *a, int la);
+int	step_til_ko(int targ, int *a, int la, int * ind);
 
 #endif
