@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:11:42 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/19 18:22:59 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/21 15:56:20 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include "../libft/libft.h"
 # include <unistd.h>
+
+typedef struct	s_instr
+{
+	char 			*word;
+	struct s_instr	*next;
+}				t_instr;
 
 short	ft_sx(int *x, int lx);
 short	ft_px(int *less, int *lless, int *more, int *lmore);
@@ -31,7 +37,7 @@ int	solve(int *a, int *b, int la, int lb);
 void	choose(int *a, int *b, int la);
 void	pivot(int *a, int *b, int la, int lb);
 short	test_s(int *a, int la, int *b, int lb);
-void	go_to_targ(int targ, int *a, int la);
+void	go_to_targ(int targ, int *a, int la, int lim);
 int	find_next(int *a, int la, int *ind);
 int	get_ind(int n, int *ind);
 int	find_point(int targ, int *b, int lb);
@@ -39,7 +45,8 @@ void	involve_b(int targ, int *b, int lb);
 void	spin_b(int wanted, int i, int *b, int lb);
 void	b_spin_til_ok(int *b, int lb);
 short	is_sorted_r(int *b, int lb);
-void	go_to_targ_2(int obj, int *a, int la, int targ);
+void	go_to_targ_2(int targ, int obj, int *a, int la, int lim);
 int	step_til_ko(int targ, int *a, int la, int * ind);
+short	best_way(int targ, int *a, int la, int lim);
 
 #endif

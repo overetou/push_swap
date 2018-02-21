@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:35 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/19 20:35:54 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/19 22:31:24 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,37 @@ int	find_next(int *a, int la, int *ind)
 	return (targ);
 }
 
-void	go_to_targ(int targ, int *a, int la)
+short	best_way(int targ, int *a, int la, int lim)
+{
+	int i;
+	int f;
+	int b;
+
+	i = 0;
+	f = 0;
+	b = 0;
+	while (a[i] != targ)
+	{
+		if (a[i] > lim)
+			f++;
+		i++;
+	}
+	i = la - 1;
+	while (a[i] != targ)
+	{
+		if (a[i] > lim)
+			b++;
+		i--;
+	}
+	return (f >= b ? 1 : 0);
+}
+
+void	go_to_targ(int targ, int *a, int la, int lim)
 {
 	int i;
 	
 	i = get_ind(targ, a);
-	if (i > la / 2)
+	if (best_way(targ, a, la, lim))
 	{
 		write(1, "rra\n", 4);
 		ft_rrx(a, la);
@@ -71,12 +96,12 @@ void	go_to_targ(int targ, int *a, int la)
 	}
 }
 
-void	go_to_targ_2(int obj, int *a, int la, int targ)
+void	go_to_targ_2(int targ, int obj, int *a, int la, int lim)
 {
 	int i;
 	
 	i = get_ind(obj, a);
-	if (i > la / 2)
+	if (best_way(targ, a, la, lim))
 	{
 		if (targ == a[1])
 		{
