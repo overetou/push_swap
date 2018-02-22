@@ -1,32 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pivot.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/22 15:39:27 by overetou          #+#    #+#             */
+/*   Updated: 2018/02/22 16:52:32 by overetou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+#include <stdlib.h>
 
-void	get_lowest(int *a, int *la, int *b, int *lb)
+t_pile	*new_link(int n)
 {
-	int i;
-	int best;
+	t_pile *new;
 
-	i = 1;
-	best = a[0];
-	while (i != (*la))
-	{
-		if (a[i] < best)
-			best = a[i];
-		i++;
-	}
-	i = 0;
-	while (a[i] != best)
-	{
-		write(1, "ra\n", 3);
-		ft_rx(a, *la);
-		dsp_stack(a, *la, b, *lb);
-	}
-	write (1, "pb\n", 3);
-	ft_px(a, la, b, lb);
-	dsp_stack(a, *la, b, *lb);
+	new = (t_pile*)malloc(sizeof(t_pile));
+	new->next = NULL;
+	new->n = n;
+	new->stop = 0;
+	return (new);
 }
 
-void	pivot(int *a, int *b, int la, int lb)
+t_pile	*new_stack(int *a, int la)
 {
-	if (la % 2)
-		get_lowest(a, &la, b, &lb);
+	t_pile *new;
+	t_pile *to_return;
+	int i;
+
+	i = 1;
+	to_return = new_link(a[0]);
+	new = to_return;
+	while (i != la)
+	{
+		new->next = new_link(a[i++]);
+		new = new->next;
+	}
+	return (to_return);
+}
+
+void	dsp(t_pile *a, t_pile *b)
+{
+	while (a)
+	{
+		ft_putnbr(a->n);
+		write(1, " ", 1);
+		a = a->next;
+	}
+	write(1, "\n", 1);
+	if (b)
+	{
+		while (b)
+		{
+			ft_putnbr(b->n);
+			write(1, " ", 1);
+			b = b->next;
+		}
+		write(1, "\n", 1);
+	}
+}
+
+
+void	quick(int *pa, int la)
+{
+	t_pile	*a;
+	t_pile	*b;
+
+	a = new_stack(pa, la);
+	b = NULL;
+	px(&a, &b);
+	px(&a, &b);
+	dsp(a, b);
+	ss(b, a);
+	dsp(a, b);
+	free(a);
 }

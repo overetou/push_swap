@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:11:42 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/21 15:56:20 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/22 16:53:00 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 # include "../libft/libft.h"
 # include <unistd.h>
 
-typedef struct	s_instr
+typedef struct	s_pile
 {
-	char 			*word;
-	struct s_instr	*next;
-}				t_instr;
+	int 			n;
+	short			stop;
+	struct s_pile	*next;
+}				t_pile;
 
 short	ft_sx(int *x, int lx);
 short	ft_px(int *less, int *lless, int *more, int *lmore);
@@ -32,21 +33,14 @@ short	ft_a(int *a, int la, char *line);
 short	ft_b(int *b, int lb, char *line);
 short	ft_rr(int *a, int la, int *b, int lb);
 short	ft_rrr(int *a, int la, int *b, int lb);
-int	only_int(char **argv, int argc);
-int	solve(int *a, int *b, int la, int lb);
-void	choose(int *a, int *b, int la);
-void	pivot(int *a, int *b, int la, int lb);
-short	test_s(int *a, int la, int *b, int lb);
-void	go_to_targ(int targ, int *a, int la, int lim);
-int	find_next(int *a, int la, int *ind);
-int	get_ind(int n, int *ind);
-int	find_point(int targ, int *b, int lb);
-void	involve_b(int targ, int *b, int lb);
-void	spin_b(int wanted, int i, int *b, int lb);
-void	b_spin_til_ok(int *b, int lb);
+int		only_int(char **argv, int argc);
+int		solve(int *a, int *b, int la, int lb);
+void	quick(int *a, int la);
 short	is_sorted_r(int *b, int lb);
-void	go_to_targ_2(int targ, int obj, int *a, int la, int lim);
-int	step_til_ko(int targ, int *a, int la, int * ind);
-short	best_way(int targ, int *a, int la, int lim);
+void	sx(t_pile *x);
+void	rx(t_pile **x);
+void	rrx(t_pile **x);
+void	px(t_pile **less, t_pile **more);
+void	ss(t_pile *a, t_pile *b);
 
 #endif
