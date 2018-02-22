@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:11:42 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/22 16:53:00 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/22 21:14:17 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,16 @@ short	ft_rr(int *a, int la, int *b, int lb);
 short	ft_rrr(int *a, int la, int *b, int lb);
 int		only_int(char **argv, int argc);
 int		solve(int *a, int *b, int la, int lb);
-void	quick(int *a, int la);
+void	quick(int *a, int la, int *pb);
 short	is_sorted_r(int *b, int lb);
 void	sx(t_pile *x);
 void	rx(t_pile **x);
 void	rrx(t_pile **x);
 void	px(t_pile **less, t_pile **more);
 void	ss(t_pile *a, t_pile *b);
+short	sorted(t_pile *a);
+void	dsp(t_pile *a, t_pile *b);
+short	sorted(t_pile *a);
+void	empty_a(t_pile **a, t_pile **b);
 
 #endif

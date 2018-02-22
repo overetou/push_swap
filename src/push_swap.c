@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 			a[x - 1] = ft_atoi(argv[x]);
 			x++;
 		}
-		no_double_i(a, argc - 1) ? quick(a, argc - 1) : ft_putendl("ERROR");
+		no_double_i(a, argc - 1) ? quick(a, argc - 1, b) : ft_putendl("ERROR");
 		free(a);
 		free(b);
 	}
