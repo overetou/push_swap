@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:11:42 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/22 21:14:17 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/23 14:20:47 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,17 @@ int		only_int(char **argv, int argc);
 int		solve(int *a, int *b, int la, int lb);
 void	quick(int *a, int la, int *pb);
 short	is_sorted_r(int *b, int lb);
-void	sx(t_pile *x);
-void	rx(t_pile **x);
-void	rrx(t_pile **x);
-void	px(t_pile **less, t_pile **more);
+void	sx(t_pile *x, char c);
+void	rx(t_pile **x, char c);
+void	rrx(t_pile **x, char c);
+void	px(t_pile **less, t_pile **more, char c);
 void	ss(t_pile *a, t_pile *b);
 short	sorted(t_pile *a);
 void	dsp(t_pile *a, t_pile *b);
 short	sorted(t_pile *a);
 void	empty_a(t_pile **a, t_pile **b);
+void	move_b(t_pile **a, t_pile **b);
+void	move_a(t_pile **a, t_pile **b);
+int		get_median(t_pile *a);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 15:39:27 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/22 22:00:51 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/23 18:14:40 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ void	quick(int *pa, int la, int *pb)
 	ind = dirty_sort(pa, la, pb, 0);
 	a = new_stack(pa, la, ind);
 	b = NULL;
-//	dsp(a, b);
 	empty_a(&a, &b);
-	dsp(a, b);
+	if (b)
+		move_b(&a, &b);
 	free(a);
+	free(ind);
 }
