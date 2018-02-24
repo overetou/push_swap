@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:11:42 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/23 14:20:47 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/24 15:54:29 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	empty_a(t_pile **a, t_pile **b);
 void	move_b(t_pile **a, t_pile **b);
 void	move_a(t_pile **a, t_pile **b);
 int		get_median(t_pile *a);
+void	shake_sort(t_pile **a, int size);
 
 #endif

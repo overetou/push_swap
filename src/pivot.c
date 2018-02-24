@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 15:39:27 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/23 18:14:40 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/24 18:30:18 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	quick(int *pa, int la, int *pb)
 	t_pile	*b;
 	int		*ind;
 
+	if (is_sorted(pa, la))
+			return ;
 	ind = dirty_sort(pa, la, pb, 0);
 	a = new_stack(pa, la, ind);
 	b = NULL;

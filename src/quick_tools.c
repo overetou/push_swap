@@ -1,4 +1,5 @@
-/* ************************************************************************** */
+
+/**************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   quick_tools.c                                      :+:      :+:    :+:   */
@@ -6,11 +7,12 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 19:16:22 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/23 18:13:04 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/24 20:40:56 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "stdio.h"
 
 short	sorted(t_pile *a)
 {
@@ -34,6 +36,8 @@ void	dsp(t_pile *a, t_pile *b)
 	while (a)
 	{
 		ft_putnbr(a->n);
+		if (a->stop == 1)
+			write(1, "*", 1);
 		write(1, " ", 1);
 		a = a->next;
 	}
@@ -43,6 +47,8 @@ void	dsp(t_pile *a, t_pile *b)
 		while (b)
 		{
 			ft_putnbr(b->n);
+			if (b->stop == 1)
+				write(1, "*", 1);
 			write(1, " ", 1);
 			b = b->next;
 		}
@@ -78,7 +84,7 @@ void	move_b(t_pile **a, t_pile **b)
 {
 	int median;
 	int i;
-	
+
 	i = 0;
 	(*b)->stop = 0;
 	median = get_median(*b);
@@ -127,8 +133,8 @@ void	empty_a(t_pile **a, t_pile **b)
 		if (*b)
 			(*b)->stop = 1;
 	}
-		last = *b;
-		while (last->next)
-			last = last->next;
-		last->stop = 1;
+	last = *b;
+	while (last->next)
+		last = last->next;
+	last->stop = 1;
 }
