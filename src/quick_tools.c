@@ -100,10 +100,12 @@ void	move_b(t_pile **a, t_pile **b)
 		else
 			px(b, a, 'a');
 	}
-	if (*b && (*b)->next && (*b)->n < ((*b)->next)->n)
-		sx(*b, 'b');
 	while (i--)
+	{
 		rrx(b, 'b');
+		if (*b && (*b)->next && (*b)->n < ((*b)->next)->n)
+			sx(*b, 'b');
+	}
 	(*a)->stop = 1;
 	if (*b)
 		(*b)->stop = 1;
@@ -130,6 +132,8 @@ void	empty_a(t_pile **a, t_pile **b)
 			else
 				px(a, b, 'b');
 		}
+		if ((*a)->n < median)
+			px(a, b, 'b');
 		if (*b)
 			(*b)->stop = 1;
 	}
