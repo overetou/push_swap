@@ -75,31 +75,21 @@ void	process_instr(t_instr *my_itr)
 {
 	t_instr	*next_i;
 
-	while (my_itr->next)
+	while (my_itr &&  my_itr->next)
 	{
 		next_i = my_itr->next;
-		if (ft_strcmp(my_itr->word, "sa\n") == 0 && ft_strcmp(next_i->word, "sb\n") == 0)
-		{
-			my_itr = next_i->next;
-			my_itr->word[1] = 's';
-		}
-		else if (ft_strcmp(my_itr->word, "ra\n") == 0 && ft_strcmp(next_i->word, "rb\n") == 0)
-		{
-			my_itr = next_i->next;
-			my_itr->word[1] = 'r';
-		}
-		else if (ft_strcmp(my_itr->word, "rra\n") == 0 && ft_strcmp(next_i->word, "rrb\n") == 0)
-		{
-			my_itr = next_i->next;
-			my_itr->word[2] = 'r';
-		}
-		if ((ft_strcmp(my_itr->word, "pa\n") == 0 && ft_strcmp(next_i->word, "pb\n") == 0
+		if (ft_strcmp(my_itr->word, "ra\n") == 0 && ft_strcmp(next_i->word, "rra\n") == 0)
+			my_itr = next_i;
+		else if (ft_strcmp(my_itr->word, "rb\n") == 0 && ft_strcmp(next_i->word, "rrb\n") == 0)
+			my_itr = next_i;
+		else if ((ft_strcmp(my_itr->word, "pa\n") == 0 && ft_strcmp(next_i->word, "pb\n") == 0
 		) || (ft_strcmp(my_itr->word, "pb\n") == 0 && ft_strcmp(next_i->word, "pa\n") == 0))
-			my_itr = next_i->next;
+			my_itr = next_i;
 		else
 			ft_putstr(my_itr->word);
 		my_itr = my_itr->next;
 	}
-	ft_putstr(my_itr->word);
+	if (my_itr)
+		ft_putstr(my_itr->word);
 }
 

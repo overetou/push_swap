@@ -83,6 +83,7 @@ void	quick(int *pa, int la, int *pb)
 	itr = (t_instr*)malloc(sizeof(t_instr));
 	itr->word = ft_makestr("");
 	itr->next = NULL;
+	last = itr;
 	last = empty_a(&a, &b, itr);
 	if (b)
 		move_b(&a, &b, last);
