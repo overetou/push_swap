@@ -23,11 +23,11 @@ LIB = libft/libft.a
 SRC = src/operations.c src/manager.c src/utils.c src/checker.c src/push_swap.c src/pivot.c src/sub_pivot.c \
 	  src/quick_tools.c src/quick_main.c
 
-OBJ = manager.o operations.o utils.o sub_pivot.o
+OBJ = manager.o operations.o utils.o
 
 CHEK = checker.o
 
-PUSH = push_swap.o pivot.o quick_tools.o quick_main.o
+PUSH = push_swap.o pivot.o quick_tools.o quick_main.o sub_pivot.o
 
 .PHONY: all, clean, fclean, re
 

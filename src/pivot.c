@@ -71,16 +71,23 @@ void	quick(int *pa, int la, int *pb)
 {
 	t_pile	*a;
 	t_pile	*b;
-	int		*ind;
+	t_instr	*itr;
+	t_instr *last;
+	int	*ind;
 
 	if (is_sorted(pa, la))
 			return ;
 	ind = dirty_sort(pa, la, pb, 0);
 	a = new_stack(pa, la, ind);
 	b = NULL;
-	empty_a(&a, &b);
+	itr = (t_instr*)malloc(sizeof(t_instr));
+	itr->word = ft_makestr("");
+	itr->next = NULL;
+	last = empty_a(&a, &b, itr);
 	if (b)
-		move_b(&a, &b);
+		move_b(&a, &b, last);
+	process_instr(itr);
+	rm_instr(&itr);
 	free(a);
 	free(ind);
 }

@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
 
-void	move_a(t_pile **a, t_pile **b)
+void	move_a(t_pile **a, t_pile **b, t_instr *itr)
 {
 	int median;
 	int i;
@@ -26,31 +27,79 @@ void	move_a(t_pile **a, t_pile **b)
 		while ((*a)->next && (*a)->stop != 1 && !sorted(*a) && ((*a)->next)->stop != 1)
 		{
 			if ((*a)->n > ((*a)->next)->n)
-				sx(*a, 'a');
+				itr = sx(*a, 'a', itr);
 			else if ((*a)->n > median)
 			{
-				rx(a, 'a');
+				itr = rx(a, 'a', itr);
 				i++;
 			}
 			else
-				px(a, b, 'b');
+				itr = px(a, b, 'b', itr);
 		}
 		while (i--)
 		{
-			rrx(a, 'a');
+			itr = rrx(a, 'a', itr);
 			if ((*a)->n > ((*a)->next)->n)
-				sx(*a, 'a');
+				itr = sx(*a, 'a', itr);
 		}
 	}
 	if (*b)
-		move_b(a, b);
+		move_b(a, b, itr);
 }
 
-//void	process_instr(t_instr *my_itr)
-//{
-//	char	*next;
-//	while (my_itr->next)
-//	{
-//		ft_strcpy((my_itr->next)->w, next);
-//		if (strcmp(my_itr->w, "sa\n" && strcmp(
+t_instr	*add_instr(char *s, t_instr *old)
+{
+	t_instr	*new;
+
+	new = (t_instr*)malloc(sizeof(t_instr));
+	new->word = ft_makestr(s);
+	new->next = NULL;
+	old->next = new;
+	return (new);
+}
+
+void	rm_instr(t_instr **instr)
+{
+	t_instr *old;
+
+	while (*instr)
+	{
+		old = *instr;
+		*instr = (*instr)->next;
+		ft_strdel(&(old->word));
+		free(old);
+	}
+}
+
+void	process_instr(t_instr *my_itr)
+{
+	t_instr	*next_i;
+
+	while (my_itr->next)
+	{
+		next_i = my_itr->next;
+		if (ft_strcmp(my_itr->word, "sa\n") == 0 && ft_strcmp(next_i->word, "sb\n") == 0)
+		{
+			my_itr = next_i->next;
+			my_itr->word[1] = 's';
+		}
+		else if (ft_strcmp(my_itr->word, "ra\n") == 0 && ft_strcmp(next_i->word, "rb\n") == 0)
+		{
+			my_itr = next_i->next;
+			my_itr->word[1] = 'r';
+		}
+		else if (ft_strcmp(my_itr->word, "rra\n") == 0 && ft_strcmp(next_i->word, "rrb\n") == 0)
+		{
+			my_itr = next_i->next;
+			my_itr->word[2] = 'r';
+		}
+		if ((ft_strcmp(my_itr->word, "pa\n") == 0 && ft_strcmp(next_i->word, "pb\n") == 0
+		) || (ft_strcmp(my_itr->word, "pb\n") == 0 && ft_strcmp(next_i->word, "pa\n") == 0))
+			my_itr = next_i->next;
+		else
+			ft_putstr(my_itr->word);
+		my_itr = my_itr->next;
+	}
+	ft_putstr(my_itr->word);
+}
 

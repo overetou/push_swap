@@ -80,7 +80,7 @@ int		get_median(t_pile *a)
 	return (lowest + ((best - lowest) / 2));
 }
 
-void	move_b(t_pile **a, t_pile **b)
+void	move_b(t_pile **a, t_pile **b, t_instr *itr)
 {
 	int median;
 	int i;
@@ -91,28 +91,28 @@ void	move_b(t_pile **a, t_pile **b)
 	while (*b && (*b)->stop != 1)
 	{
 		if (*b && (*b)->next && (*b)->n < ((*b)->next)->n)
-			sx(*b, 'b');
+			itr = sx(*b, 'b', itr);
 		if ((*b)->n < median && (*b)->next)
 		{
-			rx(b, 'b');
+			itr = rx(b, 'b', itr);
 			i++;
 		}
 		else
-			px(b, a, 'a');
+			itr = px(b, a, 'a', itr);
 	}
 	while (i--)
 	{
-		rrx(b, 'b');
+		itr = rrx(b, 'b', itr);
 		if (*b && (*b)->next && (*b)->n < ((*b)->next)->n)
-			sx(*b, 'b');
+			itr = sx(*b, 'b', itr);
 	}
 	(*a)->stop = 1;
 	if (*b)
 		(*b)->stop = 1;
-	move_a(a, b);
+	move_a(a, b, itr);
 }
 
-void	empty_a(t_pile **a, t_pile **b)
+t_instr	*empty_a(t_pile **a, t_pile **b, t_instr *itr)
 {
 	int		median;
 	t_pile	*last;
@@ -128,17 +128,20 @@ void	empty_a(t_pile **a, t_pile **b)
 		while ((*a)->n != mark)
 		{
 			if ((*a)->n >= median)
-				rx(a, 'a');
+				itr = rx(a, 'a', itr);
 			else
-				px(a, b, 'b');
+				itr = px(a, b, 'b', itr);
 		}
 		if ((*a)->n < median)
-			px(a, b, 'b');
+			itr = px(a, b, 'b', itr);
 		if (*b)
 			(*b)->stop = 1;
 	}
+	if (!*b)
+		return (itr);
 	last = *b;
 	while (last->next)
 		last = last->next;
 	last->stop = 1;
+	return (itr);
 }

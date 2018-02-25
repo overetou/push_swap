@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-void	sx(t_pile *x, char c)
+t_instr	*sx(t_pile *x, char c, t_instr *itr)
 {
 	t_pile	*next;
 	int		tmp;
@@ -22,12 +21,12 @@ void	sx(t_pile *x, char c)
 	tmp = x->n;
 	x->n = next->n;
 	next->n = tmp;
-	ft_putchar('s');
-	ft_putchar(c);
-	ft_putchar('\n');
+	if (c == 'a')
+		return (add_instr("sa\n", itr));
+	return (add_instr("sb\n", itr));
 }
 
-void	rx(t_pile **x, char c)
+t_instr	*rx(t_pile **x, char c, t_instr *itr)
 {
 	t_pile	*last;
 	t_pile	*old;
@@ -41,13 +40,14 @@ void	rx(t_pile **x, char c)
 			last = last->next;
 		last->next = old;
 		old->next = NULL;
-	ft_putchar('r');
-	ft_putchar(c);
-	ft_putchar('\n');
+		if (c == 'a')
+			return (add_instr("ra\n", itr));
+		return (add_instr("rb\n", itr));
 	}
+	return (itr);
 }
 
-void	rrx(t_pile **x, char c)
+t_instr	*rrx(t_pile **x, char c, t_instr *itr)
 {
 	t_pile	*old;
 
@@ -60,13 +60,14 @@ void	rrx(t_pile **x, char c)
 		while (old->next != *x)
 			old = old->next;
 		old->next = NULL;
-	ft_putstr("rr");
-	ft_putchar(c);
-	ft_putchar('\n');
+		if (c == 'a')
+			return (add_instr("rra\n", itr));
+		return (add_instr("rrb\n", itr));
 	}
+	return (itr);
 }
 
-void	px(t_pile **less, t_pile **more, char c)
+t_instr	*px(t_pile **less, t_pile **more, char c, t_instr *itr)
 {
 	t_pile	*old;
 	
@@ -80,15 +81,8 @@ void	px(t_pile **less, t_pile **more, char c)
 	else
 		old->next = NULL;
 	*more = old;
-	ft_putchar('p');
-	ft_putchar(c);
-	ft_putchar('\n');
-}
-
-void	ss(t_pile *a, t_pile *b)
-{
-	write(1, "ss\n", 3);
-	sx(a, 'a');
-	sx(b, 'b');
+	if (c == 'a')
+		return (add_instr("pa\n", itr));
+	return (add_instr("pb\n", itr));
 }
 
