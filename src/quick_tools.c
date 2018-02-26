@@ -31,6 +31,20 @@ short	sorted(t_pile *a)
 	return (1);
 }
 
+short	sorted_lite(t_pile *a)
+{
+	if (a && a->next)
+	{
+		if (sorted_lite(a->next))
+		{
+			if ((a->next)->n == a->n + 1)
+				return (1);
+		}
+		return (0);
+	}
+	return (1);
+}
+
 void	dsp(t_pile *a, t_pile *b)
 {
 	while (a)
@@ -118,7 +132,7 @@ t_instr	*empty_a(t_pile **a, t_pile **b, t_instr *itr)
 	t_pile	*last;
 	int		mark;
 
-	while (!sorted(*a))
+	while (!sorted_lite(*a))
 	{
 		last = *a;
 		while (last->next)

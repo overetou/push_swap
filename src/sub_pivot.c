@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:35 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/26 17:47:12 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/26 18:37:45 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,11 @@ t_instr	*px(t_pile **less, t_pile **more, char c, t_instr *itr)
 {
 	t_pile	*old;
 	
+	if (!(*less))
+		return (itr);
 	old = *less;
-	if (old->next)
-		*less = (*less)->next;
-	else
-		*less = NULL;
-	if (*more)
-		old->next = *more;
-	else
-		old->next = NULL;
+	*less = (*less)->next;
+	old->next = *more;
 	*more = old;
 	if (c == 'a')
 		return (add_instr("pa\n", itr));

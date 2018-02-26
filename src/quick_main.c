@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 13:53:11 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/24 20:58:42 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/26 19:52:00 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	move_a(t_pile **a, t_pile **b, t_instr *itr)
 	int i;
 
 	(*a)->stop = 0;
-	while (!sorted(*a) && ((*a)->next)->stop != 1)
+	while (!sorted(*a))
 	{
 		median = get_median(*a);
 		i = 0;
-		while ((*a)->next && (*a)->stop != 1 && !sorted(*a) && ((*a)->next)->stop != 1)
+		while ((*a)->next && !sorted(*a))
 		{
 			if ((*a)->n > ((*a)->next)->n)
 				itr = sx(*a, 'a', itr);
