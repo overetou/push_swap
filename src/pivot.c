@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 15:39:27 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/26 17:31:01 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/26 17:41:43 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void	quick(int *pa, int la, int *pb)
 	last = empty_a(&a, &b, itr);
 	if (b)
 		move_b(&a, &b, last);
-	pre_process(itr);
+	pre_process_b(itr);
+	pre_process_a(itr);
 	process_instr(itr);
 	rm_instr(&itr);
 	free(a);
