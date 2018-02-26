@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:35 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/23 13:29:19 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/26 17:30:12 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,35 @@ t_instr	*px(t_pile **less, t_pile **more, char c, t_instr *itr)
 		return (add_instr("pa\n", itr));
 	return (add_instr("pb\n", itr));
 }
+
+void	pre_process(t_instr *itr)
+{
+	t_instr	*next_i;
+	int b;
+
+	while (itr)
+	{
+		b = 0;
+		if (ft_strcmp(itr->word, "rb\n") == 0)
+		{
+			next_i = itr;
+			while (next_i && ft_strcmp(next_i->word, "rb\n") == 0)
+			{
+				b++;
+				next_i = next_i->next;
+			}
+			while (next_i && ft_strcmp(next_i->word, "rrb\n") == 0 && b--)
+			{
+				(itr->word)[0] = '\0';
+				(next_i->word)[0] = '\0';
+				next_i = next_i->next;
+				itr = itr->next;
+			}
+			itr = next_i;
+		}
+		else
+			itr = itr->next;
+	}
+}
+
 
