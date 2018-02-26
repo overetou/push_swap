@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:11:42 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/24 15:54:29 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/26 16:26:16 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void	shake_sort(t_pile **a, int size);
 t_instr	*add_instr(char *s, t_instr *old);
 void	rm_instr(t_instr **instr);
 void	process_instr(t_instr *my_itr);
+short	more_to_send(t_pile *b, int median);
 
 #endif
