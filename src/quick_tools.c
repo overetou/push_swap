@@ -104,13 +104,13 @@ void	move_b(t_pile **a, t_pile **b, t_instr *itr)
 	median = get_median(*b);
 	while (*b && (*b)->stop != 1)
 	{
-		if (*b && (*b)->next && (*b)->n < ((*b)->next)->n)
-			itr = sx(*b, 'b', itr);
 		if ((*b)->n < median && (*b)->next)
 		{
 			itr = rx(b, 'b', itr);
 			i++;
 		}
+		else if (*b && (*b)->next && (*b)->n < ((*b)->next)->n)
+			itr = sx(*b, 'b', itr);
 		else
 			itr = px(b, a, 'a', itr);
 	}

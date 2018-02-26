@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 15:59:22 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/12 20:50:28 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/26 20:37:06 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		ft_exec(int *a, int *b, int la, short x)
 			x = ft_rr(a, la, b, lb);
 		else if (ft_strcmp(line, "rrr") == 0)
 			x = ft_rrr(a, la, b, lb);
+		ft_putendl(line);
 		ft_strdel(&line);
 		dsp_stack(a, la, b, lb);
 		if (!x)
