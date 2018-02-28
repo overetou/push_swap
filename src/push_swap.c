@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/28 18:32:04 by overetou          #+#    #+#             */
+/*   Updated: 2018/02/28 18:34:13 by overetou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include <stdlib.h>
 
@@ -7,7 +19,7 @@ short	test_r(int *a, int la, int *b, int lb)
 	{
 		if (a[la - 1] < a[1])
 			ft_rrx(a, la);
-		else if (lb > 1  && b[0] < b[lb - 1])
+		else if (lb > 1 && b[0] < b[lb - 1])
 			ft_rr(a, la, b, lb);
 		else
 			ft_rx(a, la);
@@ -15,7 +27,7 @@ short	test_r(int *a, int la, int *b, int lb)
 	}
 	else if (lb > 1 && b[0] < b[lb - 1])
 	{
-		ft_rx(b,lb);
+		ft_rx(b, lb);
 		return (1);
 	}
 	return (0);
@@ -25,7 +37,7 @@ short	test_s(int *a, int la, int *b, int lb)
 {
 	if (la > 1 && a[0] > a[1])
 	{
-		if (lb > 1  && b[0] < b[1])
+		if (lb > 1 && b[0] < b[1])
 			ft_ss(a, la, b, lb);
 		else
 			ft_sx(a, la);
@@ -33,7 +45,7 @@ short	test_s(int *a, int la, int *b, int lb)
 	}
 	else if (lb > 1 && b[0] < b[1])
 	{
-		ft_sx(b,lb);
+		ft_sx(b, lb);
 		return (1);
 	}
 	return (0);
@@ -58,7 +70,7 @@ int		solve(int *a, int *b, int la, int lb)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	int *a;
 	int *b;
@@ -67,7 +79,7 @@ int	main(int argc, char **argv)
 		return (0);
 	a = (int*)malloc(sizeof(int) * argc);
 	b = (int*)malloc(sizeof(int) * argc);
-	if (set_a(a, argv, argc) && no_double_i(a, argc)) 
+	if (set_a(a, argv, argc) && no_double_i(a, argc))
 		quick(a, argc, b);
 	else
 		ft_putendl("ERROR");

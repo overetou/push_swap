@@ -6,7 +6,7 @@
 #    By: overetou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 12:25:00 by overetou          #+#    #+#              #
-#    Updated: 2018/02/23 14:21:34 by overetou         ###   ########.fr        #
+#    Updated: 2018/02/28 20:22:22 by overetou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,14 @@ CC = gcc
 
 LIB = libft/libft.a
 
-SRC = src/operations.c src/manager.c src/utils.c src/checker.c src/push_swap.c src/pivot.c src/sub_pivot.c \
-	  src/quick_tools.c src/quick_main.c
+SRC = src/operations.c src/manager.c src/utils.c src/checker.c src/push_swap.c src/quick.c src/sub_quick.c \
+	  src/quick_tools.c src/quick_main.c src/quick_last.c
 
 OBJ = manager.o operations.o utils.o
 
 CHEK = checker.o
 
-PUSH = push_swap.o pivot.o quick_tools.o quick_main.o sub_pivot.o
+PUSH = push_swap.o quick.o quick_tools.o quick_main.o sub_quick.o quick_last.o
 
 .PHONY: all, clean, fclean, re
 

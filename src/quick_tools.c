@@ -1,13 +1,12 @@
-
-/**************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   quick_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/22 19:16:22 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/24 20:40:56 by overetou         ###   ########.fr       */
+/*   Created: 2018/02/28 18:44:54 by overetou          #+#    #+#             */
+/*   Updated: 2018/02/28 19:22:25 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +24,6 @@ short	sorted(t_pile *a)
 				a->stop = 1;
 				return (1);
 			}
-		}
-		return (0);
-	}
-	return (1);
-}
-
-short	sorted_lite(t_pile *a)
-{
-	if (a && a->next)
-	{
-		if (sorted_lite(a->next))
-		{
-			if ((a->next)->n == a->n + 1)
-				return (1);
 		}
 		return (0);
 	}
@@ -115,11 +100,7 @@ void	move_b(t_pile **a, t_pile **b, t_instr *itr)
 			itr = px(b, a, 'a', itr);
 	}
 	while (i--)
-	{
-		itr = rrx(b, 'b', itr);
-		if (*b && (*b)->next && (*b)->n < ((*b)->next)->n)
-			itr = sx(*b, 'b', itr);
-	}
+		rr_test_sb(b, &itr);
 	(*a)->stop = 1;
 	if (*b)
 		(*b)->stop = 1;
@@ -140,12 +121,7 @@ t_instr	*empty_a(t_pile **a, t_pile **b, t_instr *itr)
 		mark = last->n;
 		median = get_median(*a);
 		while ((*a)->n != mark)
-		{
-			if ((*a)->n >= median)
-				itr = rx(a, 'a', itr);
-			else
-				itr = px(a, b, 'b', itr);
-		}
+			itr = ((*a)->n >= median ? rx(a, 'a', itr) : px(a, b, 'b', itr));
 		if ((*a)->n < median)
 			itr = px(a, b, 'b', itr);
 		if (*b)

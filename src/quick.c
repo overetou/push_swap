@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pivot.c                                            :+:      :+:    :+:   */
+/*   quick.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 15:39:27 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/26 19:38:54 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:38:12 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ t_pile	*new_link(int n)
 
 t_pile	*new_stack(int *a, int la, int *ind)
 {
-	t_pile *new;
-	t_pile *to_return;
-	int i;
+	t_pile	*new;
+	t_pile	*to_return;
+	int		i;
 
 	i = 1;
 	to_return = new_link(get_ind(a[0], ind));
@@ -72,11 +72,11 @@ void	quick(int *pa, int la, int *pb)
 	t_pile	*a;
 	t_pile	*b;
 	t_instr	*itr;
-	t_instr *last;
-	int	*ind;
+	t_instr	*last;
+	int		*ind;
 
 	if (is_sorted(pa, la))
-			return ;
+		return ;
 	ind = dirty_sort(pa, la, pb, 0);
 	a = new_stack(pa, la, ind);
 	b = NULL;

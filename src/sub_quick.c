@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sub_pivot.c                                        :+:      :+:    :+:   */
+/*   sub_quick.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 14:14:35 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/26 18:37:45 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/28 20:19:38 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_instr	*rrx(t_pile **x, char c, t_instr *itr)
 t_instr	*px(t_pile **less, t_pile **more, char c, t_instr *itr)
 {
 	t_pile	*old;
-	
+
 	if (!(*less))
 		return (itr);
 	old = *less;
@@ -85,7 +85,7 @@ t_instr	*px(t_pile **less, t_pile **more, char c, t_instr *itr)
 void	pre_process_b(t_instr *itr)
 {
 	t_instr	*next_i;
-	int b;
+	int		b;
 
 	while (itr)
 	{
@@ -100,8 +100,7 @@ void	pre_process_b(t_instr *itr)
 			}
 			while (next_i && ft_strcmp(next_i->word, "rrb\n") == 0 && b--)
 			{
-				(itr->word)[0] = '\0';
-				(next_i->word)[0] = '\0';
+				slash_instr(itr->word, next_i->word);
 				next_i = next_i->next;
 				itr = itr->next;
 			}
@@ -111,34 +110,3 @@ void	pre_process_b(t_instr *itr)
 			itr = itr->next;
 	}
 }
-
-void	pre_process_a(t_instr *itr)
-{
-	t_instr	*next_i;
-	int a;
-
-	while (itr)
-	{
-		a = 0;
-		if (ft_strcmp(itr->word, "ra\n") == 0)
-		{
-			next_i = itr;
-			while (next_i && ft_strcmp(next_i->word, "ra\n") == 0)
-			{
-				a++;
-				next_i = next_i->next;
-			}
-			while (next_i && ft_strcmp(next_i->word, "rra\n") == 0 && a--)
-			{
-				(itr->word)[0] = '\0';
-				(next_i->word)[0] = '\0';
-				next_i = next_i->next;
-				itr = itr->next;
-			}
-			itr = next_i;
-		}
-		else
-			itr = itr->next;
-	}
-}
-

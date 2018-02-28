@@ -1,48 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   manager.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/28 18:21:13 by overetou          #+#    #+#             */
+/*   Updated: 2018/02/28 18:22:41 by overetou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-short ft_a(int *a, int la, char *line)
+short	ft_a(int *a, int la, char *line)
 {
-  if (ft_strcmp(line, "sa") == 0)
-    ft_sx(a, la);
-  else if (ft_strcmp(line, "ra") == 0)
-    ft_rx(a, la);
-  else if (ft_strcmp(line, "rra") == 0)
+	if (ft_strcmp(line, "sa") == 0)
+		ft_sx(a, la);
+	else if (ft_strcmp(line, "ra") == 0)
+		ft_rx(a, la);
+	else if (ft_strcmp(line, "rra") == 0)
 		ft_rrx(a, la);
-  else
-    return (0);
-  return (1);
+	else
+		return (0);
+	return (1);
 }
 
-short ft_b(int *b, int lb, char *line)
+short	ft_b(int *b, int lb, char *line)
 {
-  if (ft_strcmp(line, "sb") == 0)
-    ft_sx(b, lb);
-  else if (ft_strcmp(line, "rb") == 0)
-    ft_rx(b, lb);
-  else if (ft_strcmp(line, "rrb") == 0)
+	if (ft_strcmp(line, "sb") == 0)
+		ft_sx(b, lb);
+	else if (ft_strcmp(line, "rb") == 0)
+		ft_rx(b, lb);
+	else if (ft_strcmp(line, "rrb") == 0)
 		ft_rrx(b, lb);
-  else
-    return (0);
-  return (1);
+	else
+		return (0);
+	return (1);
 }
 
-short ft_ss(int *a, int la, int *b, int lb)
+short	ft_ss(int *a, int la, int *b, int lb)
 {
-  ft_sx(a, la);
-  ft_sx(b, lb);
-  return (1);
+	ft_sx(a, la);
+	ft_sx(b, lb);
+	return (1);
 }
 
-short ft_rr(int *a, int la, int *b, int lb)
+short	ft_rr(int *a, int la, int *b, int lb)
 {
-    ft_rx(a, la);
-    ft_rx(b, lb);
-    return (1);
+	ft_rx(a, la);
+	ft_rx(b, lb);
+	return (1);
 }
 
-short ft_rrr(int *a, int la, int *b, int lb)
+short	ft_rrr(int *a, int la, int *b, int lb)
 {
-    ft_rrx(a, la);
-    ft_rrx(b, lb);
-    return (1);
+	ft_rrx(a, la);
+	ft_rrx(b, lb);
+	return (1);
 }

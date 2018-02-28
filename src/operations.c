@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 14:32:19 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/12 20:56:53 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:24:02 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ short	ft_rrx(int *x, int lx)
 {
 	int i;
 	int save;
+
 	if (lx < 2)
 		return (1);
 	i = lx - 1;
@@ -85,7 +86,7 @@ short	ft_rrx(int *x, int lx)
 	return (1);
 }
 
-short ft_rx(int *x, int lx)
+short	ft_rx(int *x, int lx)
 {
 	int i;
 	int save;

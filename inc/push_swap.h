@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 15:11:42 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/28 17:37:04 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/28 20:24:11 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,9 @@ void	pre_process_b(t_instr *itr);
 void	pre_process_a(t_instr *itr);
 int		count_arg(int argc, char **argv);
 short	set_a(int *a, char **argv, int argc);
+void	rr_test_sb(t_pile **b, t_instr **itr);
+void	rr_test_sa(t_pile **a, t_instr **itr);
+short	sorted_lite(t_pile *a);
+void	slash_instr(char *s1, char *s2);
 
 #endif

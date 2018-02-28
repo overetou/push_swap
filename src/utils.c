@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/28 18:39:03 by overetou          #+#    #+#             */
+/*   Updated: 2018/02/28 18:43:32 by overetou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 #include <stdlib.h>
 
@@ -6,7 +18,7 @@ short	is_sorted_r(int *b, int lb)
 	int x;
 
 	if (lb < 2)
-		return(1);
+		return (1);
 	x = 1;
 	while (x != lb)
 	{
@@ -59,10 +71,10 @@ int		count_arg(int argc, char **argv)
 
 short	set_a(int *a, char **argv, int argc)
 {
-	int n;
-	int p;
-	int x;
-	char **tmp;
+	int		n;
+	int		p;
+	int		x;
+	char	**tmp;
 
 	n = 0;
 	p = 1;
@@ -81,6 +93,20 @@ short	set_a(int *a, char **argv, int argc)
 		}
 		free(tmp);
 		p++;
+	}
+	return (1);
+}
+
+short	sorted_lite(t_pile *a)
+{
+	if (a && a->next)
+	{
+		if (sorted_lite(a->next))
+		{
+			if ((a->next)->n == a->n + 1)
+				return (1);
+		}
+		return (0);
 	}
 	return (1);
 }

@@ -6,13 +6,12 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 13:53:11 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/26 21:33:18 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/28 20:00:11 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
-
 
 void	move_a(t_pile **a, t_pile **b, t_instr *itr)
 {
@@ -37,11 +36,7 @@ void	move_a(t_pile **a, t_pile **b, t_instr *itr)
 				itr = px(a, b, 'b', itr);
 		}
 		while (i--)
-		{
-			itr = rrx(a, 'a', itr);
-			if ((*a)->n > ((*a)->next)->n)
-				itr = sx(*a, 'a', itr);
-		}
+			rr_test_sa(a, &itr);
 	}
 	if (*b)
 		move_b(a, b, itr);
@@ -75,15 +70,19 @@ void	process_instr(t_instr *my_itr)
 {
 	t_instr	*next_i;
 
-	while (my_itr &&  my_itr->next)
+	while (my_itr && my_itr->next)
 	{
 		next_i = my_itr->next;
-		if (ft_strcmp(my_itr->word, "ra\n") == 0 && ft_strcmp(next_i->word, "rra\n") == 0)
+		if (ft_strcmp(my_itr->word, "ra\n") == 0
+		&& ft_strcmp(next_i->word, "rra\n") == 0)
 			my_itr = next_i;
-		else if (ft_strcmp(my_itr->word, "rb\n") == 0 && ft_strcmp(next_i->word, "rrb\n") == 0)
+		else if (ft_strcmp(my_itr->word, "rb\n") == 0
+		&& ft_strcmp(next_i->word, "rrb\n") == 0)
 			my_itr = next_i;
-		else if ((ft_strcmp(my_itr->word, "pa\n") == 0 && ft_strcmp(next_i->word, "pb\n") == 0
-		) || (ft_strcmp(my_itr->word, "pb\n") == 0 && ft_strcmp(next_i->word, "pa\n") == 0))
+		else if ((ft_strcmp(my_itr->word, "pa\n") == 0
+		&& ft_strcmp(next_i->word, "pb\n") == 0)
+		|| (ft_strcmp(my_itr->word, "pb\n") == 0
+		&& ft_strcmp(next_i->word, "pa\n") == 0))
 			my_itr = next_i;
 		else
 			ft_putstr(my_itr->word);
@@ -93,3 +92,9 @@ void	process_instr(t_instr *my_itr)
 		ft_putstr(my_itr->word);
 }
 
+void	rr_test_sb(t_pile **b, t_instr **itr)
+{
+	*itr = rrx(b, 'b', *itr);
+	if (*b && (*b)->next && (*b)->n < ((*b)->next)->n)
+		*itr = sx(*b, 'b', *itr);
+}
