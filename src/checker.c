@@ -6,7 +6,7 @@
 /*   By: overetou <overetou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 15:59:22 by overetou          #+#    #+#             */
-/*   Updated: 2018/02/26 20:37:06 by overetou         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:08:26 by overetou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ int		ft_exec(int *a, int *b, int la, short x)
 			x = ft_rr(a, la, b, lb);
 		else if (ft_strcmp(line, "rrr") == 0)
 			x = ft_rrr(a, la, b, lb);
-		ft_putendl(line);
 		ft_strdel(&line);
-		dsp_stack(a, la, b, lb);
-		if (!x)
-			break ;
 	}
 	free(b);
 	return (lb > 0 ? -1 : x);
@@ -51,18 +47,12 @@ int		process_stack(char **argv, int argc)
 {
 	int *a;
 	int *b;
-	int x;
 	int r;
+	int x;
 
 	a = (int*)malloc(sizeof(int) * argc);
 	b = (int*)malloc(sizeof(int) * argc);
-	x = 0;
-	while (x != argc)
-	{
-		a[x] = ft_atoi(argv[x + 1]);
-		x++;
-	}
-	if (no_double_i(a, argc) && (r = ft_exec(a, b, argc, 1)) != 0)
+	if (set_a(a, argv,  argc) && (r = ft_exec(a, b, argc, 1)) != 0)
 	{
 		if (is_sorted(a, argc) && r == 1)
 			write(1, "OK\n", 3);
@@ -78,13 +68,10 @@ int		process_stack(char **argv, int argc)
 
 int	main(int argc, char **argv)
 {
-	if (argc == 1)
+	if ((argc = count_arg(argc, argv)) == 1)
 		return (0);
-	if (only_int(argv, argc))
-	{
-		if (process_stack(argv, argc - 1))
+	if (process_stack(argv, argc))
 		return (0);
-	}
 	write(2, "Error\n", 6);
 	return (0);
 }

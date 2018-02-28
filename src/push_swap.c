@@ -60,27 +60,18 @@ int		solve(int *a, int *b, int la, int lb)
 
 int	main(int argc, char **argv)
 {
-	int x;
 	int *a;
 	int *b;
 
-	if (argc == 1)
+	if ((argc = count_arg(argc, argv)) == 1)
 		return (0);
-	if (only_int(argv, argc))
-	{
-		x = 1;
-		a = (int*)malloc(sizeof(int) * argc);
-		b = (int*)malloc(sizeof(int) * argc);
-		while (x != argc)
-		{
-			a[x - 1] = ft_atoi(argv[x]);
-			x++;
-		}
-		no_double_i(a, argc - 1) ? quick(a, argc - 1, b) : ft_putendl("ERROR");
-		free(a);
-		free(b);
-	}
+	a = (int*)malloc(sizeof(int) * argc);
+	b = (int*)malloc(sizeof(int) * argc);
+	if (set_a(a, argv, argc) && no_double_i(a, argc)) 
+		quick(a, argc, b);
 	else
 		ft_putendl("ERROR");
+	free(a);
+	free(b);
 	return (0);
 }

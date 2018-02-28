@@ -1,5 +1,5 @@
 #include "push_swap.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 short	is_sorted_r(int *b, int lb)
 {
@@ -17,22 +17,70 @@ short	is_sorted_r(int *b, int lb)
 	return (1);
 }
 
-int		only_int(char **argv, int argc)
+int		only_int(char *s)
 {
-	int x;
 	char *del;
 
-	x = 1;
-	while (argc > x)
+	if (ft_strcmp((del = ft_itoa(ft_atoi(s))), s) != 0)
 	{
-		if (ft_strcmp((del = ft_itoa(ft_atoi(argv[x]))), argv[x]) != 0)
-		{
-			ft_strdel(&del);
-			return (0);
-		}
 		ft_strdel(&del);
-		x++;
+		return (0);
 	}
+	ft_strdel(&del);
 	return (1);
 }
 
+int		count_arg(int argc, char **argv)
+{
+	int p;
+	int i;
+	int n;
+
+	p = 1;
+	n = 0;
+	while (p != argc)
+	{
+		i = 0;
+		while (argv[p][i])
+		{
+			while (argv[p][i] && argv[p][i] == ' ')
+				i++;
+			if (argv[p][i])
+			{
+				n++;
+				while (argv[p][i] && argv[p][i] != ' ')
+					i++;
+			}
+		}
+		p++;
+	}
+	return (n);
+}
+
+short	set_a(int *a, char **argv, int argc)
+{
+	int n;
+	int p;
+	int x;
+	char **tmp;
+
+	n = 0;
+	p = 1;
+	while (n != argc)
+	{
+		tmp = ft_strsplit(argv[p], ' ');
+		x = 0;
+		while (tmp[x])
+		{
+			if (!only_int(tmp[x]))
+				return (0);
+			a[n] = ft_atoi(tmp[x]);
+			ft_strdel(&tmp[x]);
+			x++;
+			n++;
+		}
+		free(tmp);
+		p++;
+	}
+	return (1);
+}
