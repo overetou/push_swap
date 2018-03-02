@@ -66,5 +66,6 @@ void	rr_test_sb(t_pile **b, t_instr **itr);
 void	rr_test_sa(t_pile **a, t_instr **itr);
 short	sorted_lite(t_pile *a);
 void	slash_instr(char *s1, char *s2);
+int	small(int *a, int *b, int la, int lb);
 
 #endif
